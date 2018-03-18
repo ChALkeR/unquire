@@ -1,6 +1,6 @@
 {
   "name": "unquire",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple require() polyfill to use in browser demos",
   "main": "require.js",
   "scripts": {},
