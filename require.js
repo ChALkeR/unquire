@@ -91,8 +91,10 @@ require.get = async function(path) {
       path = res.url;
     }
     text = await res.text();
-    // Note: don't dedupe this with the key above, `path` could have changed
-    sessionStorage.setItem(`require:text:${path}`, text);
+    if (path.startsWith(require.cdn)) {
+      // Note: don't dedupe this with the key above, `path` could have changed
+      sessionStorage.setItem(`require:text:${path}`, text);
+    }
   }
   const entry = { path, text };
   require.got.set(path, entry);
