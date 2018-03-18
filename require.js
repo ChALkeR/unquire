@@ -92,6 +92,10 @@ require.get = async function(path) {
     }
     text = await res.text();
     if (path.startsWith(require.cdn)) {
+      if (!/\.(js|json)$/.test(path)) {
+        path = `${path}.js`; // Not redirected
+        require.paths.set(res.url, path);
+      }
       // Note: don't dedupe this with the key above, `path` could have changed
       sessionStorage.setItem(`require:text:${path}`, text);
     }
